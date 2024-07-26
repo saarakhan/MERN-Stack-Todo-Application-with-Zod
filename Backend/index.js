@@ -9,12 +9,14 @@ const cors = require("cors");
 const app = express();
 
 
-app.use(cors({
-    origin:["https://todo-app-amber-three.vercel.app/"],
-    methods:["POST","GET"],
-    credentials: true
-}
-));
+// app.use(cors({
+//     origin:["https://todo-app-amber-three.vercel.app/"],
+//     methods:["POST","GET"],
+//     credentials: true
+// }
+// ));
+
+app.use(cors());  
 app.use(express.json());
 
 app.post("/todo", async function (req, res) {
