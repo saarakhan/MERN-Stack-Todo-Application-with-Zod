@@ -8,7 +8,11 @@
 
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://localhost:27017/");
+mongoose.connect("mongodb://localhost:27017/").then(() => {
+  console.log("Connected to MongoDB");
+}).catch(err => {
+  console.error("Failed to connect to MongoDB", err);
+});
 const todoSchema = mongoose.Schema({
   title: String,
   description: String,
