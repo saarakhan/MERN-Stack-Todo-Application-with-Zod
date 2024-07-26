@@ -34,13 +34,9 @@ app.post("/todo", async function (req, res) {
 
 app.get("/todos", async function (req, res) {
     const todos = await todo.find({});
-    console.log(todos);
-
-
     res.json({
         todos
     })
-
 })
 
 app.put("/completed", async function (req, res) {
@@ -64,5 +60,19 @@ app.put("/completed", async function (req, res) {
     })
 })
 
+app.delete("/todos/:id", async function (req, res) {
+    const { id } = req.params;
+    let delTodo = await todo.findByIdAndDelete(id);
+
+    console.log(delTodo);
+    if (!delTodo) {
+        return res.status(404).json({
+            msg: "Todo not found"
+        });
+    }
+    res.json({
+        msg: "Todo marked as completed"
+    })
+});
 
 app.listen(3000);
